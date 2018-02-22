@@ -5,10 +5,12 @@ import {createLogger} from 'redux-logger'
 import {createSagaMonitor} from 'redux-saga-devtools'
 import rootReducer from './reducer';
 
+export const monitor = createSagaMonitor();
+
 const configureStore = (preloadedState, history) => {
 
     const sagaMiddleware = createSagaMiddleware({
-        monitor: createSagaMonitor(),
+        monitor
     })
 
 
