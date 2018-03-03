@@ -1,5 +1,5 @@
 import { handleActions, createActions } from 'redux-actions'
-
+import reducerRegistry from './../../../lib/registry/reducer-registry'
 
 export const { app: appActions } = createActions({
     APP: {
@@ -16,7 +16,11 @@ const initialState = {
 
 const reducer = handleActions({
     [appActions.start]: state => ({ ...state, isLoaded: false })
-},initialState)
+}, initialState)
 
+
+
+
+reducerRegistry.register('application', reducer)
 
 export default reducer;

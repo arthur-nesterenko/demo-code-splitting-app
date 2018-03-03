@@ -1,12 +1,20 @@
-// import HomePage from './home';
-import PostPage from './posts';
 import asyncPage from './../lib/async-page'
+
+const DEFAULT_DELAY = 300;
 
 
 
 const HomePage = asyncPage({
-    getCompnent: () => import(/* webpackChunkName: "home-page" */'./home')
+    getCompnent: () => import(/* webpackChunkName: "home-page" */'./home'),
+    service: () => import(/* webpackChunkName: "home-service" */'./home/service'),
+    delay: DEFAULT_DELAY
 });
+
+const PostPage = asyncPage({
+    getCompnent: () => import(/* webpackChunkName: "post-page" */'./posts'),
+    service: () => import(/* webpackChunkName: "post-service" */'./posts/service'),
+    delay: DEFAULT_DELAY
+})
 
 
 

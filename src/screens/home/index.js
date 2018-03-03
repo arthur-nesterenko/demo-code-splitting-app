@@ -7,7 +7,6 @@ const HomePage = ({ fetch }) => <div>Home page
 
     <div >
         <button className='uk-button uk-button-primary' onClick={fetch}> fetch </button>
-
     </div>
 </div>;
 

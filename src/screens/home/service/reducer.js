@@ -1,5 +1,6 @@
 import { createActions, handleActions } from 'redux-actions'
 
+const reducerName = 'home';
 
 
 export const { home: homeActions } = createActions({
@@ -19,9 +20,9 @@ const initialState = {
 }
 
 
-const reducer = handleActions({
+export const reducer = handleActions({
     [homeActions.fetch.request]: state => state
 }, initialState);
 
 
-export default reducer;
+export default { reducer, reducerName }

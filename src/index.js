@@ -12,10 +12,11 @@ import { appActions } from './shared/services/application'
 
 UIkit.use(Icons);
 const history = createBrowserHistory();
-const store = configureStore(null, history);
+const store = configureStore({}, history);
 
 
-store.runSaga(rootSagas);
+const r = store.runSaga(rootSagas);
+console.log('r', r.result())
 
 
 store.dispatch(appActions.start())
