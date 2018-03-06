@@ -24,9 +24,9 @@ export class ServiceRegistry {
         console.log('reducer')
         reducerRegistry.register(name, reudcer);
     }
-    registerSaga(name, service) {
+    registerSaga(saga) {
         console.log('saga')
-        // sagaRegistry.register(name, service);
+        sagaRegistry.register(saga);
     }
 
 

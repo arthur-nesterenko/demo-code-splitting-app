@@ -4,6 +4,7 @@ import { combineReducers } from 'redux'
 export class ReducerRegistry {
 
     static instance = null;
+    
 
     constructor() {
 

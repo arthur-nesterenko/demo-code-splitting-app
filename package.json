@@ -26,6 +26,7 @@
   "devDependencies": {
     "prop-types": "^15.6.0",
     "redux-logger": "^3.0.6",
-    "redux-saga-devtools": "^0.2.0"
+    "redux-saga-devtools": "^0.2.0",
+    "webpack-bundle-analyzer": "^2.11.1"
   }
 }

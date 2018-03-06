@@ -15,10 +15,6 @@ const history = createBrowserHistory();
 const store = configureStore({}, history);
 
 
-const r = store.runSaga(rootSagas);
-console.log('r', r.result())
-
-
 store.dispatch(appActions.start())
 
 

@@ -6,6 +6,7 @@ import { createSagaMonitor } from 'redux-saga-devtools'
 // import rootReducer from './reducer';
 
 import reducerRegistry, { ReducerRegistry } from './../lib/registry/reducer-registry'
+import sagaRegistry, { SagaRegistry } from './../lib/registry/saga-registry'
 
 export const monitor = createSagaMonitor();
 
@@ -29,7 +30,7 @@ const configureStore = (preloadedState, history) => {
 
     reducerRegistry.setChangeListener(reducers => {
         store.replaceReducer(ReducerRegistry.combine(reducers));
-      });
+    });
 
 
     if (module.hot) {
@@ -42,6 +43,20 @@ const configureStore = (preloadedState, history) => {
     const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
     store.runSaga = sagaMiddleware.run;
+
+
+
+    sagaRegistry.getSagas().forEach(saga => {
+        store.runSaga(saga)
+    });
+
+
+    sagaRegistry.setChangeListener(sagas => {
+        sagas.forEach(store.runSaga)
+    })
+
+
+
     return store;
 
 };

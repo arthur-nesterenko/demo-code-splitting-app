@@ -36,8 +36,7 @@ const asyncPage = ({
             try {
                 const { reducer: { reducer, reducerName }, sagas } = await service();
                 serviceRegistry.registerReducer(reducerName, reducer);
-                serviceRegistry.registerSaga(reducerName, sagas)
-
+                serviceRegistry.registerSaga(sagas)
                 await delayLoad(delay);
 
             } catch (e) {
@@ -79,7 +78,7 @@ const asyncPage = ({
 
         render() {
             const { component: Component } = this.state;
-           
+
 
             return Component !== null ? <Component /> : <div>loading page</div>
         }

@@ -9,6 +9,8 @@ function* fetch() {
 
         yield call(delay, 400);
 
+        console.log('saga', 'home request')
+
 
         yield put(homeActions.fetch.success('success'))
 
