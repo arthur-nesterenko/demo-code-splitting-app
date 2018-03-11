@@ -9,16 +9,12 @@ export class SagaRegistry extends Registry {
         this[_sagas] = []
     }
 
-    getSagas() {
-        return this[_sagas]
-    }
-
+    getSagas = () => this[_sagas]
 
     register = (saga) => {
-
         this[_sagas] = [...this[_sagas], saga]
         if (this._emitChange) {
-            this._emitChange(this[_sagas])
+            this._emitChange(saga)
         }
 
     }

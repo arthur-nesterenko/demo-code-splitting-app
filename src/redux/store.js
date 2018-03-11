@@ -46,11 +46,10 @@ const configureStore = (preloadedState, history) => {
     });
 
 
-    if (module.hot) {
-        module.hot.accept('./reducer', () => {
-            store.replaceReducer(rootReducer);
-        });
-    }
+    // if (module.hot) {
+    //     console.log('hot');
+    //     ReducerRegistry.combine(reducerRegistry.getReducers())
+    // }
 
 
     const store = createStore(rootReducer, composeEnhancers(
@@ -66,9 +65,7 @@ const configureStore = (preloadedState, history) => {
     });
 
 
-    sagaRegistry.setChangeListener(sagas => {
-        sagas.forEach(store.runSaga)
-    })
+    sagaRegistry.setChangeListener(store.runSaga);
 
 
 

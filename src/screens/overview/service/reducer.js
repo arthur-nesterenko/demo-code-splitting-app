@@ -18,16 +18,24 @@ export const { overview: overviewActions } = createActions({
 
 const initialState = {
     isFetching: false,
-    items: [],
+    items: {
+        lists: [],
+        bestsellers_date: null
+    },
     numResults: 0,
+    selectedDate: null,
     error: null
 }
 
 
+
+
+
 const reducer = handleActions({
-    [overviewActions.fetch.request]: state => ({ ...state, isFetching: false }),
-    [overviewActions.fetch.success]: fetchSuccessMutator
-},initialState);
+    [overviewActions.fetch.request]: state => initialState,
+    [overviewActions.fetch.success]: fetchSuccessMutator,
+}, initialState);
+
 
 
 

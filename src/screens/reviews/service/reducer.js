@@ -1,5 +1,7 @@
 import { createActions, handleActions } from 'redux-actions'
 
+
+
 export const reducerName = 'reviews';
 
 export const { reviews: reviewsActions } = createActions({
@@ -23,7 +25,12 @@ const initialState = {
 
 const reducer = handleActions({
     [reviewsActions.fetch.request]: state => state,
-    [reviewsActions.fetch.success]: state => state
+    [reviewsActions.fetch.success]: (state, { payload }) => ({
+        ...state,
+        isFetching: true,
+        items: payload
+    })
+
 }, initialState)
 
 export default { reducer, reducerName }

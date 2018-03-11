@@ -1,7 +1,7 @@
 import propTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ContentSpinner } from './../../../shared/components/ui'
+import { Placeholder } from './../../../shared/components/ui'
 import 'uikit';
 
 
@@ -9,7 +9,7 @@ const createLink = ({ author }) => `/reviews/${author}`;
 
 
 const HomePage = ({ isFetching, items }) => (
-    <ContentSpinner loading={isFetching} >
+    <Placeholder loading={isFetching} >
         <div className="uk-grid-large uk-child-expand@s uk-child-width-1-2 uk-grid-match uk-text-center" data-uk-grid>
             {items.map((item, key) => (
                 <div key={key}>
@@ -31,7 +31,7 @@ const HomePage = ({ isFetching, items }) => (
 
             ))}
         </div>
-    </ContentSpinner>
+    </Placeholder>
 )
 
 

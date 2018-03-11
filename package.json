@@ -5,9 +5,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "date-fns": "^1.29.0",
     "history": "^4.7.2",
     "qs": "^6.5.1",
     "react": "^16.2.0",
+    "react-calendar": "^2.13.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-redux-router": "0.0.14",

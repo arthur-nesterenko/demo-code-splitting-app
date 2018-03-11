@@ -9,6 +9,7 @@ const numResults = state => state[reducerName].numResults;
 
 
 
+
 const isFetchingSelector = createSelector(
     isFetching,
     isFetching => isFetching

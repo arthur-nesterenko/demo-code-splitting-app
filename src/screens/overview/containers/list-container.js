@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { overviewSelectors } from './../service'
-import OverviewPage from './../components/page-component'
+import { overviewSelectors, overviewActions, } from './../service'
+import OverviewList from './../components/overview-list'
+
 
 
 const mapStateToProps = state => ({
     isFetching: overviewSelectors.isFetchingSelector(state),
     items: overviewSelectors.itemsSelector(state),
-    numResults: overviewSelectors.numResultsSelector(state)
+    numResults: overviewSelectors.numResultsSelector(state),
 });
 
 
 const mapDispatchToProps = (dispatch) => ({
-    fetch: (published_date) => dispatch(fetch({ published_date }))
+    fetch: (published_date) => dispatch(overviewActions.fetch.request({ published_date }))
 })
 
 
@@ -28,15 +29,17 @@ const lifeCycleOptions = {
 }
 
 
+
 const enhance = compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps),
-    lifecycle(lifeCycleOptions)
+    lifecycle(lifeCycleOptions),
+
 )
 
 
 
-export default enhance(OverviewPage)
+export default enhance(OverviewList)
 
 
 

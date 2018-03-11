@@ -1,13 +1,22 @@
 import React from 'react';
+import Calendar from 'react-calendar'
+import { format } from 'date-fns'
 
 
 
 
+const OverviewPage = ({ fetch }) => {
 
-const OverviewPage = () => {
+    const onChange = (date) => fetch(format(date, 'YYYY-MM-DD'))
+
+    return <div>
+
+        <Calendar onChange={onChange} />
 
 
-    return <div>Hello overview</div>
+
+
+    </div>
 }
 
 

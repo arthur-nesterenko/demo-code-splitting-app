@@ -10,14 +10,21 @@ export class ReducerRegistry extends Registry {
         this[_reducers] = {};
     }
     getReducers = () => ({ ...this[_reducers] });
+
+
     register = (name, reducer) => {
+
         this[_reducers] = { ...this[_reducers], [name]: reducer }
+        console.log('register', name)
         if (this._emitChange) {
             this._emitChange(this[_reducers])
         }
     }
     static combine(reducers, initialState = {}) {
         const reducerNames = Object.keys(reducers);
+
+        console.log('combine', reducers),
+            console.log('names', reducerNames)
 
         Object.keys(initialState).forEach(item => {
             if (reducerNames.indexOf(item) === -1) {

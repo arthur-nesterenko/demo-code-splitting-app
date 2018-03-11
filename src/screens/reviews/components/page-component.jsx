@@ -1,11 +1,11 @@
 import React from 'react'
-import { ContentSpinner } from './../../../shared/components/ui'
+import { Placeholder } from './../../../shared/components/ui'
 
-const ReviewPage = ({ isFetching, items }) => <ContentSpinner loading={isFetching} >
+const ReviewPage = ({ isFetching, items }) => <Placeholder loading={isFetching} >
     <div>
         hello review page
     </div>
-</ContentSpinner>
+</Placeholder>
 
 
 
