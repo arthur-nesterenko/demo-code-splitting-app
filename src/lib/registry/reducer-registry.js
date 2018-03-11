@@ -1,49 +1,21 @@
 import { combineReducers } from 'redux'
+import Registry from './registry'
 
 
-export class ReducerRegistry {
+const _reducers = Symbol('reducers')
 
-    static instance = null;
-    
-
+export class ReducerRegistry extends Registry {
     constructor() {
-
-        if (ReducerRegistry.instance) {
-            return ReducerRegistry.instance;
-        }
-
-        this._reducers = {};
-        this._emitChange = null;
-
-        ReducerRegistry.instance = this;
-
-
+        super()
+        this[_reducers] = {};
     }
-
-    /**
-     * 
-     */
-    getReducers = () => ({ ...this._reducers });
-
-    /**
-     * 
-     */
+    getReducers = () => ({ ...this[_reducers] });
     register = (name, reducer) => {
-
-        this._reducers = { ...this._reducers, [name]: reducer }
+        this[_reducers] = { ...this[_reducers], [name]: reducer }
         if (this._emitChange) {
-            this._emitChange(this._reducers)
+            this._emitChange(this[_reducers])
         }
-
     }
-    /**
-     * 
-     */
-    setChangeListener = (listener) => this._emitChange = listener;
-
-
-
-
     static combine(reducers, initialState = {}) {
         const reducerNames = Object.keys(reducers);
 
@@ -52,11 +24,8 @@ export class ReducerRegistry {
                 reducers[item] = (state = null) => state;
             }
         });
-
         return combineReducers(reducers);
     };
-
-
 
 }
 

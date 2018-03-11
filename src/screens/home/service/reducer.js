@@ -1,13 +1,15 @@
 import { createActions, handleActions } from 'redux-actions'
+import { fetchSuccessMutator } from './mutators'
 
-const reducerName = 'home';
+export const reducerName = 'home';
 
 
 export const { home: homeActions } = createActions({
     HOME: {
-        FETCH: {
+        RECEIVE: {
             REQUEST: undefined,
             SUCCESS: undefined,
+            GOOD: undefined,
             FAILURE: undefined
         }
     }
@@ -16,12 +18,14 @@ export const { home: homeActions } = createActions({
 
 const initialState = {
     isFetching: false,
+    error: null,
     items: []
 }
 
 
 export const reducer = handleActions({
-    [homeActions.fetch.request]: state => state
+    [homeActions.receive.request]: state => ({ ...state, isFetching: false }),
+    [homeActions.receive.success]: fetchSuccessMutator
 }, initialState);
 
 

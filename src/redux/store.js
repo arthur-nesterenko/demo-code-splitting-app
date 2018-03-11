@@ -1,19 +1,28 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger'
 import { createSagaMonitor } from 'redux-saga-devtools'
-// import rootReducer from './reducer';
-
 import reducerRegistry, { ReducerRegistry } from './../lib/registry/reducer-registry'
-import sagaRegistry, { SagaRegistry } from './../lib/registry/saga-registry'
+import sagaRegistry from './../lib/registry/saga-registry'
+import { request } from './../lib/api'
+
 
 export const monitor = createSagaMonitor();
+
+const composeEnhancers =
+    typeof window === 'object' &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        }) : compose;
 
 const configureStore = (preloadedState, history) => {
 
     const sagaMiddleware = createSagaMiddleware({
-        monitor
+        sagaMonitor: monitor,
+        context: {
+            request
+        }
     })
 
 
@@ -22,7 +31,11 @@ const configureStore = (preloadedState, history) => {
         diff: true,
     });
 
-    const middlewares = [sagaMiddleware, routerMiddleware(history), logger];
+    const middlewares = [
+        sagaMiddleware,
+        routerMiddleware(history),
+        logger,
+    ];
 
 
     const rootReducer = ReducerRegistry.combine(reducerRegistry.getReducers(), preloadedState)
@@ -40,7 +53,9 @@ const configureStore = (preloadedState, history) => {
     }
 
 
-    const store = createStore(rootReducer, applyMiddleware(...middlewares));
+    const store = createStore(rootReducer, composeEnhancers(
+        applyMiddleware(...middlewares))
+    );
 
     store.runSaga = sagaMiddleware.run;
 

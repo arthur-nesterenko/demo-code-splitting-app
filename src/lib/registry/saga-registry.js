@@ -1,40 +1,27 @@
+import Registry from './registry'
 
 
-export class SagaRegistry {
+const _sagas = Symbol('sagas')
+export class SagaRegistry extends Registry {
 
-
-    static run = null;
-
-
-    constructor(runSaga) {
-
-
-        this._sagas = {}
-        this._emitChange = null;
-        this._run = runSaga;
-
+    constructor() {
+        super();
+        this[_sagas] = []
     }
 
-
-
     getSagas() {
-        return this._sagas
+        return this[_sagas]
     }
 
 
     register = (saga) => {
 
-        this._sagas = [...this._sagas, saga]
+        this[_sagas] = [...this[_sagas], saga]
         if (this._emitChange) {
-            this._emitChange(this._sagas)
+            this._emitChange(this[_sagas])
         }
 
     }
-
-
-    setChangeListener = (listener) => this._emitChange = listener;
-
-
 
 }
 

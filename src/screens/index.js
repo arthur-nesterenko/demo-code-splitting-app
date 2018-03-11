@@ -6,18 +6,22 @@ const DEFAULT_DELAY = 300;
 
 const HomePage = asyncPage({
     getCompnent: () => import(/* webpackChunkName: "home-page" */'./home'),
-    service: () => import(/* webpackChunkName: "home-service" */'./home/service'),
+    injectService: () => import(/* webpackChunkName: "home-service" */'./home/service'),
     delay: DEFAULT_DELAY
 });
 
-const PostPage = asyncPage({
-    getCompnent: () => import(/* webpackChunkName: "post-page" */'./posts'),
-    service: () => import(/* webpackChunkName: "post-service" */'./posts/service'),
+
+const ReviewsPage = asyncPage({
+    getCompnent: () => import(/* webpackChunkName: "post-page" */'./reviews'),
+    injectService: () => import(/* webpackChunkName: "post-service" */'./reviews/service'),
     delay: DEFAULT_DELAY
 })
 
-
-
+const OverivewPage = asyncPage({
+    getCompnent: () => import(/* webpackChunkName: "post-page" */'./overview'),
+    injectService: () => import(/* webpackChunkName: "post-service" */'./overview/service'),
+    delay: DEFAULT_DELAY
+})
 
 
 const routes = [
@@ -27,8 +31,14 @@ const routes = [
         exact: true,
     },
     {
-        path: '/posts',
-        component: PostPage,
+        path: '/reviews/:author',
+        component: ReviewsPage,
+        exact: true,
+
+    },
+    {
+        path: '/overview/:date?',
+        component: OverivewPage,
         exact: true,
 
     }

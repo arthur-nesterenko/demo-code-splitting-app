@@ -1,28 +1,33 @@
-import { fork, all, put, takeLatest, call } from 'redux-saga/effects';
+import { fork, all, put, takeLatest, call, getContext } from 'redux-saga/effects';
 import { delay } from 'redux-saga'
 import { homeActions } from './reducer'
 
 
 
 function* fetch() {
+
     try {
 
-        yield call(delay, 400);
-
-        console.log('saga', 'home request')
+        const request = yield getContext('request')
 
 
-        yield put(homeActions.fetch.success('success'))
+        const { results } = yield call(request, '/lists/best-sellers/history.json');
+
+
+
+        yield call(delay, 300);
+
+        yield put(homeActions.receive.success(results))
 
     }
     catch (e) {
-        yield put(homeActions.fetch.failure(e))
+        yield put(homeActions.receive.failure(e))
     }
 }
 
 
 function* watchFetchRequest() {
-    yield takeLatest(homeActions.fetch.request, fetch)
+    yield takeLatest(homeActions.receive.request, fetch)
 }
 
 

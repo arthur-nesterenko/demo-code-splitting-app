@@ -1,9 +1,9 @@
 import { createActions, handleActions } from 'redux-actions'
 
-const reducerName = 'posts';
+export const reducerName = 'reviews';
 
-export const { posts: postsActions } = createActions({
-    POSTS: {
+export const { reviews: reviewsActions } = createActions({
+    REVIEWS: {
         FETCH: {
             REQUEST: undefined,
             SUCCESS: undefined,
@@ -14,13 +14,16 @@ export const { posts: postsActions } = createActions({
 
 
 const initialState = {
-    isFetching: false
+    isFetching: false,
+    items: [],
+    error: null
 }
 
 
 
 const reducer = handleActions({
-    [postsActions.fetch.request]: state => state,
+    [reviewsActions.fetch.request]: state => state,
+    [reviewsActions.fetch.success]: state => state
 }, initialState)
 
 export default { reducer, reducerName }

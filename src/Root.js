@@ -19,14 +19,11 @@ const Root = () => (
                 <div className="uk-navbar-left">
                     <ul className="uk-navbar-nav">
                         <li className="uk-active"><NavLink to="/">Home</NavLink></li>
-                        <li className="uk-parent"><NavLink to="/posts">Posts</NavLink></li>
-                        <li><NavLink to=""></NavLink></li>
+                        <li className="uk-parent"><NavLink to="/overview">Overview</NavLink></li>
                     </ul>
                 </div>
             </nav>
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
             <Switch>
                 {screens.map((screen, i) => <RouteWithSubRoutes key={i} {...screen} />)}
             </Switch>

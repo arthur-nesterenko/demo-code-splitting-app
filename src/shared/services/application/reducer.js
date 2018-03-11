@@ -1,5 +1,8 @@
 import { handleActions, createActions } from 'redux-actions'
 import reducerRegistry from './../../../lib/registry/reducer-registry'
+import { appStartMutator } from './mutators'
+
+export const reducerName = 'application';
 
 export const { app: appActions } = createActions({
     APP: {
@@ -15,12 +18,16 @@ const initialState = {
 
 
 const reducer = handleActions({
-    [appActions.start]: state => ({ ...state, isLoaded: false })
+    [appActions.start]: appStartMutator
 }, initialState)
 
 
+/**
+ * 
+ */
+reducerRegistry.register(reducerName, reducer)
 
-
-reducerRegistry.register('application', reducer)
-
+/**
+ * 
+ */
 export default reducer;
