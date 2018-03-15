@@ -12,14 +12,20 @@ const HomePage = asyncPage({
 
 
 const ReviewsPage = asyncPage({
-    getCompnent: () => import(/* webpackChunkName: "post-page" */'./reviews'),
-    injectService: () => import(/* webpackChunkName: "post-service" */'./reviews/service'),
+    getCompnent: () => import(/* webpackChunkName: "review-page" */'./reviews'),
+    injectService: () => import(/* webpackChunkName: "review-service" */'./reviews/service'),
     delay: DEFAULT_DELAY
 })
 
 const OverivewPage = asyncPage({
-    getCompnent: () => import(/* webpackChunkName: "post-page" */'./overview'),
-    injectService: () => import(/* webpackChunkName: "post-service" */'./overview/service'),
+    getCompnent: () => import(/* webpackChunkName: "overview-page" */'./overview'),
+    injectService: () => import(/* webpackChunkName: "overview-service" */'./overview/service'),
+    delay: DEFAULT_DELAY
+})
+
+const BooksPage = asyncPage({
+    getCompnent: () => import(/* webpackChunkName: "book-page" */'./books'),
+    injectService: () => import(/* webpackChunkName: "book-service" */'./books/service'),
     delay: DEFAULT_DELAY
 })
 
@@ -40,7 +46,11 @@ const routes = [
         path: '/overview/:date?',
         component: OverivewPage,
         exact: true,
-
+    },
+    {
+        path: '/books/:list',
+        component: BooksPage,
+        exact: true,
     }
 
 ]

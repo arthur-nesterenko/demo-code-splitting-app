@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { compose, branch, renderNothing, withState, withHandlers } from 'recompose'
+import { compose, withState, withHandlers } from 'recompose'
 import Calendar from 'react-calendar'
 import { format } from 'date-fns'
 import { overviewActions } from './service'
@@ -11,11 +11,11 @@ import List from './containers/list-container'
 
 
 const OverviewPage = ({ onChange, showList }) => {
-    return <div>
+    return <div className='uk-flex uk-flex-column uk-flex-center'>
         <Calendar onChange={onChange} />
-        {showList && <div data-uk-grid>
-            <List />
-        </div>}
+        <div>
+            {showList && <List />}
+        </div>
 
     </div>
 }
@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-const shouldRender = props => !props.showList;
 
 const handlers = {
     onChange: props => date => {

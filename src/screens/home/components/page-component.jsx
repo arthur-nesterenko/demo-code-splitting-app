@@ -10,15 +10,16 @@ const createLink = ({ author }) => `/reviews/${author}`;
 
 const HomePage = ({ isFetching, items }) => (
     <Placeholder loading={isFetching} >
-        <div className="uk-grid-large uk-child-expand@s uk-child-width-1-2 uk-grid-match uk-text-center" data-uk-grid>
+        <div className="uk-grid-small uk-child-width-1-4 uk-grid-match uk-text-center" data-uk-grid>
             {items.map((item, key) => (
                 <div key={key}>
-                    <div className="uk-card uk-card-hover uk-card-default uk-width-1-2@m">
+                    <div className="uk-card uk-card-hover uk-card-default">
                         <div className="uk-card-header">
-                            {item.title}
+                            <div className="uk-card-badge uk-label">{item.price}$</div>
+                            <h5 className='uk-card-title uk-text-left uk-text-break'>{item.title}</h5>
                         </div>
                         <div className="uk-card-body">
-                            <div className="uk-card-badge uk-label">{item.price}$</div>
+
                             <p>{item.description}</p>
                         </div>
                         <div className="uk-card-footer">

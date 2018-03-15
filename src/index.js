@@ -6,7 +6,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
-import { configureStore, rootSagas } from './redux'
+import { configureStore } from './redux'
 import { appActions } from './shared/services/application'
 
 
